@@ -1,5 +1,7 @@
+//Creating Library Array
 const myLibrary = [];
 
+//Creating The Book Object
 function Book(title,author,pages,hasRead){
     this.title = title;
     this.author = author;
@@ -7,16 +9,35 @@ function Book(title,author,pages,hasRead){
     this.hasRead = hasRead;
 }
 
-const book1 = new Book("test","test2",3,true);
-const book2 = new Book("test","test3",9,false);
-
-function displayLibrary(){
-    for (let i = 0; i < myLibrary.length; i++){
-        console.log(myLibrary[i]);
-    }
+function fullName(item){
+    var fullname = [item.title,item.author,item.pages,item.hasRead].join(" ");
+    return fullname;
 }
 
-//Dialog Stuffs
+function mainFunction(){
+    myLibrary.forEach(function(item){
+        var listItem = document.createElement('li');
+        listItem.innerText = fullName(item);
+        document.getElementById("mainLibrary").appendChild(listItem);
+    })
+}
+
+//Displaying the Library When Called
+function displayLibrary(libraryArray){
+    for (let i = 0; i < libraryArray.length; i++){
+        console.log(libraryArray[i]);
+        console.log(libraryArray);
+    }
+    mainFunction();
+}
+
+//Clear Dialog (After Books Are Submitted)
+function clearForm(){
+    var dialogBox = document.getElementById("libraryForm")
+    dialogBox.reset()
+}
+
+//Dialog Generator
 const dialog = document.querySelector("dialog");
 const addBookButton = document.querySelector("dialog + button");
 const closeButton = document.querySelector("dialog button");
@@ -28,6 +49,7 @@ addBookButton.addEventListener("click", ()=>{
 
 closeButton.addEventListener("click",()=>{
     dialog.close();
+    displayLibrary(myLibrary);
 });
 
 submitButton.addEventListener("click",(event)=>{
@@ -38,11 +60,6 @@ submitButton.addEventListener("click",(event)=>{
     const hasRead = document.getElementById("hasRead").checked;
     const newBook = new Book(bookTitle, bookAuthor, bookPages, hasRead);
     myLibrary.push(newBook);
-    displayLibrary();
     clearForm();
 });
 
-function clearForm(){
-    var dialogBox = document.getElementById("libraryForm")
-    dialogBox.reset()
-}
