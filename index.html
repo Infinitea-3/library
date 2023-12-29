@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="library.css">
+    <script src="library.js" defer></script>
+    <title>Library</title>
+</head>
+<body>
+    <div>My Library:</div>
+    <dialog>
+        <button autofocus>X</button>
+        <form action="submit" id="libraryForm">
+            <div>
+                <label for="bookTitle">Book Title:</label>
+                <input type="text" id="bookTitle" name="bookTitle" required>
+            </div>
+            <div>
+                <label for="bookAuthor">Author:</label>
+                <input type="text" id="bookAuthor" name="bookAuthor" required>
+            </div>
+            <div>
+                <label for="bookPages">Pages:</label>
+                <input type="number" id="bookPages" name="bookPages" required>
+            </div>
+            <div>
+                <label for="hasRead">Have You Read It?</label>
+                <input type="checkbox" id="hasRead" name="hasRead">
+            </div>
+            <div>
+                <button type="submit" id="submitButton">Confirm</button>
+                <button type="reset">Clear Fields</button>
+            </div>
+        </form>
+    </dialog>
+    <button>Add Book</button>
+</body>
+</html>
