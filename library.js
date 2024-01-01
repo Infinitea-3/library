@@ -10,15 +10,39 @@ function Book(title,author,pages,hasRead){
 }
 
 function fullName(item){
-    var fullname = [item.title,item.author,item.pages,item.hasRead].join(" ");
+    var fullname = [item.title,item.author,item.pages].join(" ");
     return fullname;
 }
 
 function mainFunction(){
     myLibrary.forEach(function(item){
+        //Create Element
         var listItem = document.createElement('li');
         listItem.innerText = fullName(item);
         document.getElementById("mainLibrary").appendChild(listItem);
+        
+        //Create Read/Not Read Button
+        var readButton = document.createElement("button");
+        var status = "Read";
+        console.log(item.hasRead);
+        if (item.hasRead == false){
+            status = "Not Read";
+        }
+        readButton.innerHTML = status;
+        document.getElementById("mainLibrary").appendChild(readButton);
+        readButton.addEventListener("click", function(){
+            if(readButton.innerHTML == "Read"){
+                readButton.innerHTML = "Not Read";
+            } else {
+                readButton.innerHTML = "Read";
+            }
+        });    
+
+        //Create Cancel Button
+        var cancelButton = document.createElement("button");
+        cancelButton.innerHTML = "Cancel";
+        document.getElementById("mainLibrary").appendChild(cancelButton);
+
     })
 }
 
